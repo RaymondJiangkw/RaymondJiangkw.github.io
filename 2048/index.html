@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>Monte Carlo 2048 Game!</title>
+        <link href = "css/main.css" rel = "stylesheet" type = "text/css">
+    </head>
+    <body>
+        <div class = "container">
+            <div class = "heading">
+                <h1 class = "title"> 2048 </h1>
+                <div class = "scores-container">
+                    <div class = "score-container" id = "score">
+                        0
+                    </div>
+                </div>
+            </div>
+            <div class = "above-game">
+                <a class = "restart-button" onclick = "document.location.reload();">New Game</a>
+            </div>
+            <div class = "game-container" id = "Game-container">
+                <canvas id = "Game"></canvas>
+            </div>
+            <div class = "game-explanation">
+                <strong class = "important">Monte Carlo Help:</strong> 
+                <button id = "start">Run AI</button>
+                <button id = "randomStart">Run Random</button>
+            </div>
+            <hr>
+            <p>
+                <strong class = "important">HOW TO PLAY:</strong>
+                Use your <strong>arrow keys</strong> or <strong>swipe</strong>
+                to move the tiles. When two tiles with the same number touch, they
+                <strong>merge into one!</strong>
+            </p>
+            <hr>
+            <p>
+                <strong class = "important">NOTICE:</strong>
+                This project is greatly inspired by
+                <a href="https://github.com/xtrp/jupiter">this project</a>,
+                and I implement the backend fully by myself.
+                However, I am not so good at the frontend, so I use
+                <a href="https://play2048.co/">this 2048 game</a> for reference.
+                Frankly speaking, I nearly copied its whole css file. 😅
+                Thank you, <a href="http://gabrielecirulli.com" target="_blank">Gabriele Cirulli</a>.
+            </p>
+            <hr>
+            <p> Created by <a href = "https://github.com/RaymondJiangkw">Raymond Kevin</a>. </p>
+        </div>
+        <script src = "js/jquery-3.5.1.js"></script>
+        <script src = "js/touch.js"></script>
+        <script src = "js/Game.js"></script>
+        <script src = "js/main.js"></script>
+    </body>
+</html>
