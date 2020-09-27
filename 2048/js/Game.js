@@ -33,6 +33,16 @@ function copyTwoDimensionArr(arr) {
     }
     return ret;
 }
+function compareTwoDimensionsArr(arr_1, arr_2) {
+    if (arr_1.length !== arr_2.length) return false;
+    for (var i = 0; i < arr_1.length; i++) {
+        if (arr_1[i].length !== arr_2[i].length) return false;
+        for (var j = 0; j < arr_1[i].length; j++) {
+            if (arr_1[i][j] !== arr_2[i][j]) return false;
+        }
+    }
+    return true;
+}
 function PrintTwoDimensionArr(arr) {
     for (var i = 0; i < arr.length; i++) {
         var row = i + ": ";
@@ -184,6 +194,7 @@ var Game = /** @class */ (function () {
     Game.prototype.Move = function (move) {
         if (this.IsGameOver())
             return;
+        var originData = copyTwoDimensionArr(this.data);
         switch (move) {
             case MOVEMENT.Up:
                 this.upMovement();
@@ -202,7 +213,7 @@ var Game = /** @class */ (function () {
                 this.leftRightOverTurn();
                 break;
         }
-        this.generateBlock(Game.getRandomNum());
+        if (!compareTwoDimensionsArr(originData, this.data)) this.generateBlock(Game.getRandomNum());
     };
     Game.prototype.MonteCarioMove = function () {
         var movements = [MOVEMENT.Up, MOVEMENT.Down, MOVEMENT.Left, MOVEMENT.Right];
@@ -237,9 +248,9 @@ var Game = /** @class */ (function () {
     Game.base = 2;
     Game.maximumNum = Math.pow(Game.base, 11);
     Game.monteCarioSimulations = 50;
-    Game.monteCarioSimulationSteps = 200;
+    Game.monteCarioSimulationSteps = 300;
     /* require to be positive integer number */
-    Game.chancesOfBlock = [0, 7, 3]; // 2^0, 2^1, 2^2
-    Game.chanceOfNumOfBlock = [0, 7, 3]; // 0, 1, 2
+    Game.chancesOfBlock = [0, 9, 1]; // 2^0, 2^1, 2^2
+    Game.chanceOfNumOfBlock = [0, 8, 2]; // 0, 1, 2
     return Game;
 }());
