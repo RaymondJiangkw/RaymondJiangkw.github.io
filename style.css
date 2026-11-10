@@ -57,7 +57,7 @@ h1 span { color: var(--muted); }
 .publication-image { background: white; border: 1px solid var(--line); border-radius: 8px; overflow: hidden; }
 .publication-image img { width: 100%; aspect-ratio: 16 / 10; object-fit: contain; padding: 8px; }
 .publication-year { display: flex; gap: 12px; align-items: center; margin-bottom: 8px; font-size: 11px; color: var(--muted); font-variant-numeric: tabular-nums; }
-.publication[data-selected="true"] .publication-year::after { content: "Selected work"; color: var(--accent); font-size: 10px; letter-spacing: .04em; }
+.publication[data-selected="true"] .publication-year::after { content: "Selected Work"; color: var(--accent); font-size: 10px; letter-spacing: .04em; }
 .publication h3 { margin-bottom: 10px; font-size: 17px; line-height: 1.4; font-weight: 600; letter-spacing: -.015em; }
 .publication-authors { margin-bottom: 5px; font-size: 12px; line-height: 1.7; color: var(--muted); }
 .publication-authors b { color: var(--ink); font-weight: 600; }
