@@ -1,79 +1,109 @@
-body {
-    font-family: 'Lato', Arial, Helvetica, sans-serif;
-    font-size: 11pt;
-    color: rgb(76, 82, 85);
-    max-width: 960px;
-    margin: auto;
-    width: auto;
+:root {
+    --paper: #fafaf7;
+    --ink: #202d2a;
+    --muted: #65716d;
+    --accent: #22624f;
+    --line: #dde3dc;
+    --soft: #edf3ed;
 }
-
-.container {
-    margin-top: 2%;
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; scroll-padding-top: 100px; }
+body { margin: 0; background: var(--paper); color: var(--ink); font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; font-size: 15px; line-height: 1.7; -webkit-font-smoothing: antialiased; }
+[hidden] { display: none !important; }
+a { color: var(--accent); text-decoration: none; text-underline-offset: 4px; }
+a:hover { text-decoration: underline; }
+a:focus-visible, button:focus-visible { outline: 3px solid var(--accent); outline-offset: 5px; }
+button { font: inherit; }
+img { display: block; max-width: 100%; }
+p { margin: 0 0 16px; }
+h1, h2, h3 { margin: 0; line-height: 1.25; }
+h1, h2 { font-family: Georgia, "Times New Roman", serif; font-weight: 400; letter-spacing: -0.035em; }
+h2 { font-size: 34px; }
+.page-width { width: min(1080px, calc(100% - 96px)); margin-inline: auto; }
+.skip-link { position: fixed; top: -100px; left: 20px; z-index: 10; padding: 12px 20px; background: var(--ink); color: white; }
+.skip-link:focus { top: 12px; }
+.site-header { position: sticky; top: 0; z-index: 5; border-bottom: 1px solid var(--line); background: rgba(250, 250, 247, .96); backdrop-filter: blur(14px); }
+.navigation { display: flex; align-items: center; justify-content: space-between; min-height: 78px; gap: 24px; }
+.wordmark { color: var(--ink); font-weight: 650; font-size: 18px; letter-spacing: -.04em; white-space: nowrap; }
+.wordmark span { color: var(--accent); }
+.nav-links { display: flex; gap: 30px; font-size: 13px; }
+.nav-links a { color: var(--muted); }
+.nav-links a:hover { color: var(--accent); }
+.profile { display: grid; grid-template-columns: minmax(0, 1fr) 218px; align-items: start; gap: 64px; padding: 76px 0 36px; }
+.eyebrow { margin-bottom: 16px; color: var(--accent); font-size: 11px; font-weight: 650; text-transform: uppercase; letter-spacing: .16em; }
+h1 { font-size: clamp(36px, 4.3vw, 54px); }
+h1 span { color: var(--muted); }
+.profile-subtitle { margin: 16px 0 26px; color: var(--muted); font-size: 17px; }
+.biography { color: #4d5a55; font-size: 14px; line-height: 1.85; }
+.biography p { margin-bottom: 14px; }
+.portrait { margin: 8px 0 0; padding: 9px; border: 1px solid var(--line); border-radius: 100px 100px 16px 16px; background: #fff; transform: rotate(2deg); }
+.portrait img { width: 100%; aspect-ratio: 4 / 5; object-fit: cover; border-radius: 94px 94px 10px 10px; }
+.profile-links { display: flex; align-items: center; flex-wrap: wrap; gap: 24px; margin-top: 26px; font-size: 13px; font-weight: 550; }
+.profile-links span { margin-left: 5px; }
+.contact-link { padding: 9px 17px; border-radius: 6px; background: var(--accent); color: #fff; }
+.job-market-card { display: flex; align-items: baseline; gap: 15px; margin: 8px 0 72px; padding: 22px 26px; background: var(--soft); border: 1px solid #d9e5da; border-radius: 10px; }
+.status-dot { width: 8px; height: 8px; flex-shrink: 0; background: var(--accent); border-radius: 50%; }
+.job-market-card h2 { font-family: inherit; font-size: 14px; font-weight: 650; letter-spacing: 0; margin-bottom: 4px; }
+.job-market-card p { margin: 0; color: #53665b; font-size: 13px; }
+.job-market-card a { font-weight: 600; white-space: nowrap; }
+.section-heading { display: flex; justify-content: space-between; align-items: flex-end; gap: 24px; }
+.section-heading .eyebrow { margin-bottom: 10px; }
+.section-description { margin: 18px 0 8px; font-size: 13px; color: var(--muted); }
+.publication-filters { display: flex; padding: 4px; gap: 4px; border: 1px solid var(--line); background: #f0f2ed; border-radius: 8px; }
+.publication-filters button { padding: 8px 13px; border: 0; border-radius: 5px; background: transparent; color: var(--muted); font-size: 12px; font-weight: 550; cursor: pointer; white-space: nowrap; }
+.publication-filters button[aria-pressed="true"] { background: white; color: var(--accent); box-shadow: 0 1px 4px #202d2a12; }
+.publication-filters span { margin-left: 5px; font-size: 10px; opacity: .7; }
+.publication { display: grid; grid-template-columns: 252px minmax(0, 1fr); gap: 30px; padding: 30px 0; border-bottom: 1px solid var(--line); align-items: center; }
+.publication-image { background: white; border: 1px solid var(--line); border-radius: 8px; overflow: hidden; }
+.publication-image img { width: 100%; aspect-ratio: 16 / 10; object-fit: contain; padding: 8px; }
+.publication-year { display: flex; gap: 12px; align-items: center; margin-bottom: 8px; font-size: 11px; color: var(--muted); font-variant-numeric: tabular-nums; }
+.publication[data-selected="true"] .publication-year::after { content: "Selected work"; color: var(--accent); font-size: 10px; letter-spacing: .04em; }
+.publication h3 { margin-bottom: 10px; font-size: 17px; line-height: 1.4; font-weight: 600; letter-spacing: -.015em; }
+.publication-authors { margin-bottom: 5px; font-size: 12px; line-height: 1.7; color: var(--muted); }
+.publication-authors b { color: var(--ink); font-weight: 600; }
+.publication-venue { margin-bottom: 12px; font-size: 12px; color: #45564e; }
+.highlight { margin-left: 5px; color: #9d5b24; font-weight: 600; }
+.publication-links { display: flex; flex-wrap: wrap; gap: 8px; }
+.publication-links a { padding: 3px 10px; border: 1px solid #d8e4dc; border-radius: 4px; font-size: 11px; font-weight: 550; line-height: 1.6; transition: background .15s; }
+.publication-links a:hover { background: var(--soft); text-decoration: none; }
+.more-about { display: grid; grid-template-columns: 1.4fr 1fr; gap: 90px; margin: 76px 0; }
+.more-about h2 { font-size: 28px; margin-bottom: 22px; }
+.more-about p { font-size: 14px; color: var(--muted); line-height: 1.85; }
+.sidebar { padding-top: 34px; }
+.sidebar h2 { font-family: inherit; font-size: 16px; font-weight: 600; letter-spacing: -.015em; margin-bottom: 18px; }
+.sidebar .detail-label { color: var(--accent); font-size: 11px; text-transform: uppercase; letter-spacing: .1em; margin-bottom: 4px; }
+.recognition { margin-top: 32px; padding-top: 26px; border-top: 1px solid var(--line); }
+.recognition p { display: flex; justify-content: space-between; gap: 12px; margin-bottom: 8px; }
+.recognition p span { color: var(--accent); font-size: 11px; }
+.site-footer { display: flex; justify-content: space-between; gap: 24px; border-top: 1px solid var(--line); padding: 24px 0 32px; font-size: 13px; color: var(--muted); }
+@media (min-width: 1400px) { .profile { padding-top: 96px; } }
+@media (max-width: 800px) {
+    .page-width { width: calc(100% - 48px); }
+    .profile { grid-template-columns: minmax(0, 1fr) 160px; gap: 30px; padding-top: 48px; }
+    .publication { grid-template-columns: 200px minmax(0, 1fr); gap: 24px; }
+    .more-about { gap: 40px; }
 }
-
-.name-section {
-    text-align: left;
+@media (max-width: 600px) {
+    html { scroll-padding-top: 85px; }
+    .page-width { width: calc(100% - 40px); }
+    .navigation { min-height: 66px; gap: 14px; }
+    .wordmark { font-size: 15px; }
+    .nav-links { gap: 16px; font-size: 11px; }
+    .profile { display: flex; flex-direction: column; gap: 26px; padding-top: 34px; }
+    .portrait { order: -1; width: 116px; padding: 5px; margin: 0; }
+    h1 { font-size: 36px; }
+    .eyebrow { font-size: 10px; }
+    .profile-subtitle { font-size: 15px; margin: 12px 0 22px; }
+    .profile-links { gap: 18px; font-size: 12px; }
+    .job-market-card { margin-bottom: 48px; padding: 18px; }
+    .section-heading { align-items: flex-start; flex-direction: column; gap: 20px; }
+    h2 { font-size: 30px; }
+    .publication { grid-template-columns: 1fr; gap: 18px; padding: 26px 0; }
+    .publication-image { max-width: 100%; }
+    .publication-image img { aspect-ratio: 2 / 1; }
+    .publication h3 { font-size: 17px; }
+    .more-about { grid-template-columns: 1fr; gap: 18px; margin: 48px 0; }
+    .sidebar { padding-top: 8px; }
+    .site-footer { flex-direction: column; gap: 6px; }
 }
-
-.job-market-card {
-    margin: 12px 0;
-    padding: 16px 20px;
-    border: 1px solid #d9e7f3;
-    border-left: 4px solid rgb(68, 141, 204);
-    border-radius: 6px;
-    background-color: #f5f9fd;
-}
-
-.job-market-card h4 {
-    margin-bottom: 8px;
-    font-size: 1rem;
-    font-weight: 700;
-}
-
-.job-market-card p {
-    margin-bottom: 0;
-}
-
-.section-gap {
-    width: 100%;
-    height: 10px;
-}
-
-img {
-    width: 100%;
-}
-
-a {
-    color: rgb(68, 141, 204);
-    text-decoration: none;
-}
-
-b {
-    font-size: 12pt;
-}
-
-u {
-    font-weight: 700;
-    text-decoration: none;
-}
-
-.one {
-    width: 100%;
-    position: relative;
-}
-
-.two {
-    width: 100%;
-    position: absolute;
-    transition: opacity .2s ease-in-out;
-    -moz-transition: opacity .2s ease-in-out;
-    -webkit-transition: opacity .2s ease-in-out;
-}
-
-span.anchor {
-    margin-top: -50px;
-    display: block;
-    height: 50px;
-    visibility: hidden;
-    position: relative;
-}
+@media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } * { transition: none !important; } }
